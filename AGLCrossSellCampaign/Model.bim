@@ -1,0 +1,1134 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1500,
+  "model": {
+    "culture": "en-AU",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/edpprdsqldw00 database windows net;edpprddb",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "edpprdsqldw00.database.windows.net",
+            "database": "edpprddb"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "OAuth2",
+          "Expires": "Mon, 27 Jul 2020 05:50:08 GMT",
+          "RefreshToken": "********"
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimCampaign",
+        "columns": [
+          {
+            "name": "CampaignSK",
+            "dataType": "int64",
+            "sourceColumn": "CampaignSK"
+          },
+          {
+            "name": "CampaignCategory",
+            "dataType": "string",
+            "sourceColumn": "CampaignCategory"
+          },
+          {
+            "name": "CampaignName",
+            "dataType": "string",
+            "sourceColumn": "CampaignName"
+          },
+          {
+            "name": "CampaignLabel",
+            "dataType": "string",
+            "sourceColumn": "CampaignLabel"
+          },
+          {
+            "name": "CampaignDuration",
+            "dataType": "int64",
+            "sourceColumn": "CampaignDuration"
+          },
+          {
+            "name": "CampaignStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CampaignStartDate"
+          },
+          {
+            "name": "CampaignEndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CampaignEndDate"
+          },
+          {
+            "name": "CampaignStrategicObjective",
+            "dataType": "string",
+            "sourceColumn": "CampaignStrategicObjective"
+          },
+          {
+            "name": "CampaignStrategy",
+            "dataType": "string",
+            "sourceColumn": "CampaignStrategy"
+          },
+          {
+            "name": "CampaignTreatment",
+            "dataType": "string",
+            "sourceColumn": "CampaignTreatment"
+          },
+          {
+            "name": "CampaignInitiative",
+            "dataType": "string",
+            "sourceColumn": "CampaignInitiative"
+          },
+          {
+            "name": "CampaignControlGroup",
+            "dataType": "string",
+            "sourceColumn": "CampaignControlGroup"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimCampaign = Source{[Schema=\"sp_commercial\",Item=\"dimCampaign\"]}[Data]",
+                "in",
+                "    sp_commercial_dimCampaign"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimChannel",
+        "columns": [
+          {
+            "name": "ChannelSK",
+            "dataType": "int64",
+            "sourceColumn": "ChannelSK"
+          },
+          {
+            "name": "ChannelName",
+            "dataType": "string",
+            "sourceColumn": "ChannelName"
+          },
+          {
+            "name": "ChannelType",
+            "dataType": "string",
+            "sourceColumn": "ChannelType"
+          },
+          {
+            "name": "ChannelDirection",
+            "dataType": "string",
+            "sourceColumn": "ChannelDirection"
+          },
+          {
+            "name": "SourceSystem",
+            "dataType": "string",
+            "sourceColumn": "SourceSystem"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimChannel = Source{[Schema=\"sp_commercial\",Item=\"dimChannel\"]}[Data]",
+                "in",
+                "    sp_commercial_dimChannel"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimCustomerJourney",
+        "columns": [
+          {
+            "name": "CustJourneySK",
+            "dataType": "int64",
+            "sourceColumn": "CustJourneySK"
+          },
+          {
+            "name": "JourneyType",
+            "dataType": "string",
+            "sourceColumn": "JourneyType"
+          },
+          {
+            "name": "JourneyName",
+            "dataType": "string",
+            "sourceColumn": "JourneyName"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimCustJourney = Source{[Schema=\"sp_commercial\",Item=\"dimCustJourney\"]}[Data]",
+                "in",
+                "    sp_commercial_dimCustJourney"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductSK",
+            "dataType": "int64",
+            "sourceColumn": "ProductSK"
+          },
+          {
+            "name": "ProductId",
+            "dataType": "string",
+            "sourceColumn": "ProductId"
+          },
+          {
+            "name": "ProductCategory",
+            "dataType": "string",
+            "sourceColumn": "ProductCategory"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName"
+          },
+          {
+            "name": "ProductType",
+            "dataType": "string",
+            "sourceColumn": "ProductType"
+          },
+          {
+            "name": "ProductDescription",
+            "dataType": "string",
+            "sourceColumn": "ProductDescription"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimProduct = Source{[Schema=\"sp_commercial\",Item=\"dimProduct\"]}[Data]",
+                "in",
+                "    sp_commercial_dimProduct"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProposition",
+        "columns": [
+          {
+            "name": "PropositionSK",
+            "dataType": "int64",
+            "sourceColumn": "PropositionSK"
+          },
+          {
+            "name": "PropositionName",
+            "dataType": "string",
+            "sourceColumn": "PropositionName"
+          },
+          {
+            "name": "PropositionControlGroup",
+            "dataType": "string",
+            "sourceColumn": "PropositionControlGroup"
+          },
+          {
+            "name": "PropositionStrategicObjective",
+            "dataType": "string",
+            "sourceColumn": "PropositionStrategicObjective"
+          },
+          {
+            "name": "PropositionStrategy",
+            "dataType": "string",
+            "sourceColumn": "PropositionStrategy"
+          },
+          {
+            "name": "PropositionTreatment",
+            "dataType": "string",
+            "sourceColumn": "PropositionTreatment"
+          },
+          {
+            "name": "PropositionInitiative",
+            "dataType": "string",
+            "sourceColumn": "PropositionInitiative"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimProposition = Source{[Schema=\"sp_commercial\",Item=\"dimProposition\"]}[Data]",
+                "in",
+                "    sp_commercial_dimProposition"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimTouchPoint",
+        "columns": [
+          {
+            "name": "TouchPointSK",
+            "dataType": "int64",
+            "sourceColumn": "TouchPointSK"
+          },
+          {
+            "name": "TouchPointType",
+            "dataType": "string",
+            "sourceColumn": "TouchPointType"
+          },
+          {
+            "name": "TouchPointName",
+            "dataType": "string",
+            "sourceColumn": "TouchPointName"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimTouchPoint = Source{[Schema=\"sp_commercial\",Item=\"dimTouchPoint\"]}[Data]",
+                "in",
+                "    sp_commercial_dimTouchPoint"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimTargetCustomer",
+        "columns": [
+          {
+            "name": "CustomerSK",
+            "dataType": "int64",
+            "sourceColumn": "CustomerSK"
+          },
+          {
+            "name": "BPID",
+            "dataType": "string",
+            "sourceColumn": "BPID"
+          },
+          {
+            "name": "CustomerDOB",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerDOB"
+          },
+          {
+            "name": "CustomerAge",
+            "dataType": "int64",
+            "sourceColumn": "CustomerAge"
+          },
+          {
+            "name": "CustomerGender",
+            "dataType": "string",
+            "sourceColumn": "CustomerGender"
+          },
+          {
+            "name": "CustomerSoho",
+            "dataType": "string",
+            "sourceColumn": "CustomerSoho"
+          },
+          {
+            "name": "CustomerSME",
+            "dataType": "string",
+            "sourceColumn": "CustomerSME"
+          },
+          {
+            "name": "CustomerSMER",
+            "dataType": "string",
+            "sourceColumn": "CustomerSMER"
+          },
+          {
+            "name": "CustomerRESI",
+            "dataType": "string",
+            "sourceColumn": "CustomerRESI"
+          },
+          {
+            "name": "CustomerStatus",
+            "dataType": "string",
+            "sourceColumn": "CustomerStatus"
+          },
+          {
+            "name": "CustomerChurnDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerChurnDate"
+          },
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType"
+          },
+          {
+            "name": "ActiveCustomer",
+            "dataType": "string",
+            "sourceColumn": "ActiveCustomer"
+          },
+          {
+            "name": "CNIFlag",
+            "dataType": "string",
+            "sourceColumn": "CNIFlag"
+          },
+          {
+            "name": "CompanyFlag",
+            "dataType": "string",
+            "sourceColumn": "CompanyFlag"
+          },
+          {
+            "name": "AGLRewards",
+            "dataType": "string",
+            "sourceColumn": "AGLRewards"
+          },
+          {
+            "name": "BusinessMultisite",
+            "dataType": "string",
+            "sourceColumn": "BusinessMultisite"
+          },
+          {
+            "name": "CustomerSegment",
+            "dataType": "string",
+            "sourceColumn": "CustomerSegment"
+          },
+          {
+            "name": "CustomerValueState",
+            "dataType": "string",
+            "sourceColumn": "CustomerValueState"
+          },
+          {
+            "name": "CustomerValueNational",
+            "dataType": "string",
+            "sourceColumn": "CustomerValueNational"
+          },
+          {
+            "name": "CustomerChurnPropensity",
+            "dataType": "string",
+            "sourceColumn": "CustomerChurnPropensity"
+          },
+          {
+            "name": "CustomerRiskClass",
+            "dataType": "string",
+            "sourceColumn": "CustomerRiskClass"
+          },
+          {
+            "name": "CustomerRiskScore",
+            "dataType": "int64",
+            "sourceColumn": "CustomerRiskScore"
+          },
+          {
+            "name": "ElectricityContracts",
+            "dataType": "int64",
+            "sourceColumn": "ElectricityContracts"
+          },
+          {
+            "name": "GasContracts",
+            "dataType": "int64",
+            "sourceColumn": "GasContracts"
+          },
+          {
+            "name": "ClassNoOfSites",
+            "dataType": "string",
+            "sourceColumn": "ClassNoOfSites"
+          },
+          {
+            "name": "CustomerStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerStartDate"
+          },
+          {
+            "name": "CustomerTenure",
+            "dataType": "int64",
+            "sourceColumn": "CustomerTenure"
+          },
+          {
+            "name": "MyAccountFlag",
+            "dataType": "string",
+            "sourceColumn": "MyAccountFlag"
+          },
+          {
+            "name": "LastSuccessfulMyAccountLoginDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LastSuccessfulMyAccountLoginDate"
+          },
+          {
+            "name": "TotalSuccessfulMyAccountLogins",
+            "dataType": "int64",
+            "sourceColumn": "TotalSuccessfulMyAccountLogins"
+          },
+          {
+            "name": "Webchatflag",
+            "dataType": "string",
+            "sourceColumn": "Webchatflag"
+          },
+          {
+            "name": "LastWebchatDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LastWebchatDate"
+          },
+          {
+            "name": "CustomerHardship",
+            "dataType": "string",
+            "sourceColumn": "CustomerHardship"
+          },
+          {
+            "name": "OmbudsmanComplaint",
+            "dataType": "string",
+            "sourceColumn": "OmbudsmanComplaint"
+          },
+          {
+            "name": "StayingConnectedFlag",
+            "dataType": "string",
+            "sourceColumn": "StayingConnectedFlag"
+          },
+          {
+            "name": "Complaints",
+            "dataType": "string",
+            "sourceColumn": "Complaints"
+          },
+          {
+            "name": "BadDebt",
+            "dataType": "string",
+            "sourceColumn": "BadDebt"
+          },
+          {
+            "name": "OutstandingDebt",
+            "dataType": "string",
+            "sourceColumn": "OutstandingDebt"
+          },
+          {
+            "name": "IncompleteMailingAddress",
+            "dataType": "string",
+            "sourceColumn": "IncompleteMailingAddress"
+          },
+          {
+            "name": "DateFrom",
+            "dataType": "dateTime",
+            "sourceColumn": "DateFrom"
+          },
+          {
+            "name": "DateTo",
+            "dataType": "dateTime",
+            "sourceColumn": "DateTo"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_customer_dimTargetCustomer = Source{[Schema=\"sp_customer\",Item=\"dimTargetCustomer\"]}[Data]",
+                "in",
+                "    sp_customer_dimTargetCustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateSK",
+            "dataType": "int64",
+            "sourceColumn": "DateSK"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "string",
+            "sourceColumn": "FullDate"
+          },
+          {
+            "name": "DayOfMonth",
+            "dataType": "string",
+            "sourceColumn": "DayOfMonth"
+          },
+          {
+            "name": "DaySuffix",
+            "dataType": "string",
+            "sourceColumn": "DaySuffix"
+          },
+          {
+            "name": "DayName",
+            "dataType": "string",
+            "sourceColumn": "DayName"
+          },
+          {
+            "name": "DayOfWeek",
+            "dataType": "string",
+            "sourceColumn": "DayOfWeek"
+          },
+          {
+            "name": "DayOfWeekInMonth",
+            "dataType": "string",
+            "sourceColumn": "DayOfWeekInMonth"
+          },
+          {
+            "name": "DayOfWeekInYear",
+            "dataType": "string",
+            "sourceColumn": "DayOfWeekInYear"
+          },
+          {
+            "name": "DayOfQuarter",
+            "dataType": "string",
+            "sourceColumn": "DayOfQuarter"
+          },
+          {
+            "name": "DayOfYear",
+            "dataType": "string",
+            "sourceColumn": "DayOfYear"
+          },
+          {
+            "name": "WeekOfMonth",
+            "dataType": "string",
+            "sourceColumn": "WeekOfMonth"
+          },
+          {
+            "name": "WeekOfQuarter",
+            "dataType": "string",
+            "sourceColumn": "WeekOfQuarter"
+          },
+          {
+            "name": "WeekOfYear",
+            "dataType": "string",
+            "sourceColumn": "WeekOfYear"
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName"
+          },
+          {
+            "name": "MonthOfQuarter",
+            "dataType": "string",
+            "sourceColumn": "MonthOfQuarter"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "QuarterName",
+            "dataType": "string",
+            "sourceColumn": "QuarterName"
+          },
+          {
+            "name": "Year",
+            "dataType": "string",
+            "sourceColumn": "Year"
+          },
+          {
+            "name": "YearName",
+            "dataType": "string",
+            "sourceColumn": "YearName"
+          },
+          {
+            "name": "MonthYear",
+            "dataType": "string",
+            "sourceColumn": "MonthYear"
+          },
+          {
+            "name": "MMYYYY",
+            "dataType": "string",
+            "sourceColumn": "MMYYYY"
+          },
+          {
+            "name": "FirstDayOfMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "FirstDayOfMonth"
+          },
+          {
+            "name": "LastDayOfMonth",
+            "dataType": "dateTime",
+            "sourceColumn": "LastDayOfMonth"
+          },
+          {
+            "name": "FirstDayOfQuarter",
+            "dataType": "dateTime",
+            "sourceColumn": "FirstDayOfQuarter"
+          },
+          {
+            "name": "LastDayOfQuarter",
+            "dataType": "dateTime",
+            "sourceColumn": "LastDayOfQuarter"
+          },
+          {
+            "name": "FirstDayOfYear",
+            "dataType": "dateTime",
+            "sourceColumn": "FirstDayOfYear"
+          },
+          {
+            "name": "LastDayOfYear",
+            "dataType": "dateTime",
+            "sourceColumn": "LastDayOfYear"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_open_dimDate = Source{[Schema=\"sp_open\",Item=\"dimDate\"]}[Data]",
+                "in",
+                "    sp_open_dimDate"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimLocation",
+        "columns": [
+          {
+            "name": "LocationSK",
+            "dataType": "int64",
+            "sourceColumn": "LocationSK"
+          },
+          {
+            "name": "PostCode",
+            "dataType": "string",
+            "sourceColumn": "PostCode"
+          },
+          {
+            "name": "Suburb",
+            "dataType": "string",
+            "sourceColumn": "Suburb"
+          },
+          {
+            "name": "State",
+            "dataType": "string",
+            "sourceColumn": "State"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_open_dimLocation = Source{[Schema=\"sp_open\",Item=\"dimLocation\"]}[Data]",
+                "in",
+                "    sp_open_dimLocation"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactCustomerMetrics",
+        "columns": [
+          {
+            "name": "ActualCustMetricFactSK",
+            "dataType": "int64",
+            "sourceColumn": "ActualCustMetricFactSK"
+          },
+          {
+            "name": "PropositionSK",
+            "dataType": "int64",
+            "sourceColumn": "PropositionSK"
+          },
+          {
+            "name": "CampaignSK",
+            "dataType": "int64",
+            "sourceColumn": "CampaignSK"
+          },
+          {
+            "name": "LocationSK",
+            "dataType": "int64",
+            "sourceColumn": "LocationSK"
+          },
+          {
+            "name": "DateSK",
+            "dataType": "int64",
+            "sourceColumn": "DateSK"
+          },
+          {
+            "name": "ChannelSK",
+            "dataType": "int64",
+            "sourceColumn": "ChannelSK"
+          },
+          {
+            "name": "ProductSK",
+            "dataType": "int64",
+            "sourceColumn": "ProductSK"
+          },
+          {
+            "name": "CustJourneySK",
+            "dataType": "int64",
+            "sourceColumn": "CustJourneySK"
+          },
+          {
+            "name": "CustomerSK",
+            "dataType": "int64",
+            "sourceColumn": "CustomerSK"
+          },
+          {
+            "name": "TouchPointSK",
+            "dataType": "int64",
+            "sourceColumn": "TouchPointSK"
+          },
+          {
+            "name": "EmailFailCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailFailCount"
+          },
+          {
+            "name": "EmailSentCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailSentCount"
+          },
+          {
+            "name": "EmailDeliveryCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailDeliveryCount"
+          },
+          {
+            "name": "EmailDeliveryDate",
+            "dataType": "dateTime",
+            "sourceColumn": "EmailDeliveryDate"
+          },
+          {
+            "name": "EmailFailDate",
+            "dataType": "dateTime",
+            "sourceColumn": "EmailFailDate"
+          },
+          {
+            "name": "EmailSentDate",
+            "dataType": "dateTime",
+            "sourceColumn": "EmailSentDate"
+          },
+          {
+            "name": "SMSCount",
+            "dataType": "int64",
+            "sourceColumn": "SMSCount"
+          },
+          {
+            "name": "DMCount",
+            "dataType": "int64",
+            "sourceColumn": "DMCount"
+          },
+          {
+            "name": "OTMCount",
+            "dataType": "int64",
+            "sourceColumn": "OTMCount"
+          },
+          {
+            "name": "TouchPointDate",
+            "dataType": "dateTime",
+            "sourceColumn": "TouchPointDate"
+          },
+          {
+            "name": "EmailClickCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailClickCount"
+          },
+          {
+            "name": "EmailOpenCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailOpenCount"
+          },
+          {
+            "name": "EmailMirrorPageCount",
+            "dataType": "int64",
+            "sourceColumn": "EmailMirrorPageCount"
+          },
+          {
+            "name": "EmailClickDateTime",
+            "dataType": "dateTime",
+            "sourceColumn": "EmailClickDateTime"
+          },
+          {
+            "name": "EmailOpenDateTime",
+            "dataType": "dateTime",
+            "sourceColumn": "EmailOpenDateTime"
+          },
+          {
+            "name": "URLLabel",
+            "dataType": "string",
+            "sourceColumn": "URLLabel"
+          },
+          {
+            "name": "EmailOptOut",
+            "dataType": "int64",
+            "sourceColumn": "EmailOptOut"
+          },
+          {
+            "name": "ImpressionCountMobile",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionCountMobile"
+          },
+          {
+            "name": "ImpressionClickCountMobile",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionClickCountMobile"
+          },
+          {
+            "name": "ImpressionCountMyAccount",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionCountMyAccount"
+          },
+          {
+            "name": "ImpressionClickCountMyAccount",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionClickCountMyAccount"
+          },
+          {
+            "name": "ImpressionCountWeb",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionCountWeb"
+          },
+          {
+            "name": "ImpressionClickCountWeb",
+            "dataType": "int64",
+            "sourceColumn": "ImpressionClickCountWeb"
+          },
+          {
+            "name": "ImpressionDateTime",
+            "dataType": "dateTime",
+            "sourceColumn": "ImpressionDateTime"
+          },
+          {
+            "name": "ImpressionClickDateTime",
+            "dataType": "dateTime",
+            "sourceColumn": "ImpressionClickDateTime"
+          },
+          {
+            "name": "ICCRevoked",
+            "dataType": "int64",
+            "sourceColumn": "ICCRevoked"
+          },
+          {
+            "name": "ICCAccepted",
+            "dataType": "int64",
+            "sourceColumn": "ICCAccepted"
+          },
+          {
+            "name": "ICCRejected",
+            "dataType": "int64",
+            "sourceColumn": "ICCRejected"
+          },
+          {
+            "name": "ICCCount",
+            "dataType": "int64",
+            "sourceColumn": "ICCCount"
+          },
+          {
+            "name": "ICCMaybe",
+            "dataType": "int64",
+            "sourceColumn": "ICCMaybe"
+          },
+          {
+            "name": "ICCDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ICCDate"
+          },
+          {
+            "name": "CurrentStatus",
+            "dataType": "string",
+            "sourceColumn": "CurrentStatus"
+          },
+          {
+            "name": "CurrentStatusDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CurrentStatusDate"
+          },
+          {
+            "name": "PreviousStatus",
+            "dataType": "string",
+            "sourceColumn": "PreviousStatus"
+          },
+          {
+            "name": "ConversionDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ConversionDate"
+          },
+          {
+            "name": "CustomerConversion",
+            "dataType": "int64",
+            "sourceColumn": "CustomerConversion"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "sourceColumn": "RowUpdated"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_FactCustomerMetrics = Source{[Schema=\"sp_commercial\",Item=\"FactCustomerMetrics\"]}[Data],",
+                "    #\"Filtered Rows\" = Table.SelectRows(sp_commercial_FactCustomerMetrics, each ([PropositionSK] <> -1)),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each ([CustJourneySK] <> -1)),",
+                "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each ([TouchPointSK] <> -1))",
+                "in",
+                "    #\"Filtered Rows2\""
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "cdc22467-9494-4c63-b6c7-28973acd4333",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "ActualCustMetricFactSK",
+        "toTable": "DimCampaign",
+        "toColumn": "CampaignCategory"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "600"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
