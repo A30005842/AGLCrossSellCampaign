@@ -3,6 +3,7 @@
   "compatibilityLevel": 1500,
   "model": {
     "culture": "en-AU",
+    "discourageImplicitMeasures": true,
     "dataSources": [
       {
         "type": "structured",
@@ -19,103 +20,12 @@
         "options": {},
         "credential": {
           "AuthenticationKind": "OAuth2",
-          "Expires": "Mon, 27 Jul 2020 05:50:08 GMT",
+          "Expires": "Mon, 27 Jul 2020 15:49:23 GMT",
           "RefreshToken": "********"
         }
       }
     ],
     "tables": [
-      {
-        "name": "DimCampaign",
-        "columns": [
-          {
-            "name": "CampaignSK",
-            "dataType": "int64",
-            "sourceColumn": "CampaignSK"
-          },
-          {
-            "name": "CampaignCategory",
-            "dataType": "string",
-            "sourceColumn": "CampaignCategory"
-          },
-          {
-            "name": "CampaignName",
-            "dataType": "string",
-            "sourceColumn": "CampaignName"
-          },
-          {
-            "name": "CampaignLabel",
-            "dataType": "string",
-            "sourceColumn": "CampaignLabel"
-          },
-          {
-            "name": "CampaignDuration",
-            "dataType": "int64",
-            "sourceColumn": "CampaignDuration"
-          },
-          {
-            "name": "CampaignStartDate",
-            "dataType": "dateTime",
-            "sourceColumn": "CampaignStartDate"
-          },
-          {
-            "name": "CampaignEndDate",
-            "dataType": "dateTime",
-            "sourceColumn": "CampaignEndDate"
-          },
-          {
-            "name": "CampaignStrategicObjective",
-            "dataType": "string",
-            "sourceColumn": "CampaignStrategicObjective"
-          },
-          {
-            "name": "CampaignStrategy",
-            "dataType": "string",
-            "sourceColumn": "CampaignStrategy"
-          },
-          {
-            "name": "CampaignTreatment",
-            "dataType": "string",
-            "sourceColumn": "CampaignTreatment"
-          },
-          {
-            "name": "CampaignInitiative",
-            "dataType": "string",
-            "sourceColumn": "CampaignInitiative"
-          },
-          {
-            "name": "CampaignControlGroup",
-            "dataType": "string",
-            "sourceColumn": "CampaignControlGroup"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
-                "    sp_commercial_dimCampaign = Source{[Schema=\"sp_commercial\",Item=\"dimCampaign\"]}[Data]",
-                "in",
-                "    sp_commercial_dimCampaign"
-              ]
-            }
-          }
-        ]
-      },
       {
         "name": "DimChannel",
         "columns": [
@@ -143,16 +53,6 @@
             "name": "SourceSystem",
             "dataType": "string",
             "sourceColumn": "SourceSystem"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -189,16 +89,6 @@
             "name": "JourneyName",
             "dataType": "string",
             "sourceColumn": "JourneyName"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -250,16 +140,6 @@
             "name": "ProductDescription",
             "dataType": "string",
             "sourceColumn": "ProductDescription"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -316,16 +196,6 @@
             "name": "PropositionInitiative",
             "dataType": "string",
             "sourceColumn": "PropositionInitiative"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -362,16 +232,6 @@
             "name": "TouchPointName",
             "dataType": "string",
             "sourceColumn": "TouchPointName"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -386,247 +246,6 @@
                 "    sp_commercial_dimTouchPoint = Source{[Schema=\"sp_commercial\",Item=\"dimTouchPoint\"]}[Data]",
                 "in",
                 "    sp_commercial_dimTouchPoint"
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "DimTargetCustomer",
-        "columns": [
-          {
-            "name": "CustomerSK",
-            "dataType": "int64",
-            "sourceColumn": "CustomerSK"
-          },
-          {
-            "name": "BPID",
-            "dataType": "string",
-            "sourceColumn": "BPID"
-          },
-          {
-            "name": "CustomerDOB",
-            "dataType": "dateTime",
-            "sourceColumn": "CustomerDOB"
-          },
-          {
-            "name": "CustomerAge",
-            "dataType": "int64",
-            "sourceColumn": "CustomerAge"
-          },
-          {
-            "name": "CustomerGender",
-            "dataType": "string",
-            "sourceColumn": "CustomerGender"
-          },
-          {
-            "name": "CustomerSoho",
-            "dataType": "string",
-            "sourceColumn": "CustomerSoho"
-          },
-          {
-            "name": "CustomerSME",
-            "dataType": "string",
-            "sourceColumn": "CustomerSME"
-          },
-          {
-            "name": "CustomerSMER",
-            "dataType": "string",
-            "sourceColumn": "CustomerSMER"
-          },
-          {
-            "name": "CustomerRESI",
-            "dataType": "string",
-            "sourceColumn": "CustomerRESI"
-          },
-          {
-            "name": "CustomerStatus",
-            "dataType": "string",
-            "sourceColumn": "CustomerStatus"
-          },
-          {
-            "name": "CustomerChurnDate",
-            "dataType": "dateTime",
-            "sourceColumn": "CustomerChurnDate"
-          },
-          {
-            "name": "CustomerType",
-            "dataType": "string",
-            "sourceColumn": "CustomerType"
-          },
-          {
-            "name": "ActiveCustomer",
-            "dataType": "string",
-            "sourceColumn": "ActiveCustomer"
-          },
-          {
-            "name": "CNIFlag",
-            "dataType": "string",
-            "sourceColumn": "CNIFlag"
-          },
-          {
-            "name": "CompanyFlag",
-            "dataType": "string",
-            "sourceColumn": "CompanyFlag"
-          },
-          {
-            "name": "AGLRewards",
-            "dataType": "string",
-            "sourceColumn": "AGLRewards"
-          },
-          {
-            "name": "BusinessMultisite",
-            "dataType": "string",
-            "sourceColumn": "BusinessMultisite"
-          },
-          {
-            "name": "CustomerSegment",
-            "dataType": "string",
-            "sourceColumn": "CustomerSegment"
-          },
-          {
-            "name": "CustomerValueState",
-            "dataType": "string",
-            "sourceColumn": "CustomerValueState"
-          },
-          {
-            "name": "CustomerValueNational",
-            "dataType": "string",
-            "sourceColumn": "CustomerValueNational"
-          },
-          {
-            "name": "CustomerChurnPropensity",
-            "dataType": "string",
-            "sourceColumn": "CustomerChurnPropensity"
-          },
-          {
-            "name": "CustomerRiskClass",
-            "dataType": "string",
-            "sourceColumn": "CustomerRiskClass"
-          },
-          {
-            "name": "CustomerRiskScore",
-            "dataType": "int64",
-            "sourceColumn": "CustomerRiskScore"
-          },
-          {
-            "name": "ElectricityContracts",
-            "dataType": "int64",
-            "sourceColumn": "ElectricityContracts"
-          },
-          {
-            "name": "GasContracts",
-            "dataType": "int64",
-            "sourceColumn": "GasContracts"
-          },
-          {
-            "name": "ClassNoOfSites",
-            "dataType": "string",
-            "sourceColumn": "ClassNoOfSites"
-          },
-          {
-            "name": "CustomerStartDate",
-            "dataType": "dateTime",
-            "sourceColumn": "CustomerStartDate"
-          },
-          {
-            "name": "CustomerTenure",
-            "dataType": "int64",
-            "sourceColumn": "CustomerTenure"
-          },
-          {
-            "name": "MyAccountFlag",
-            "dataType": "string",
-            "sourceColumn": "MyAccountFlag"
-          },
-          {
-            "name": "LastSuccessfulMyAccountLoginDate",
-            "dataType": "dateTime",
-            "sourceColumn": "LastSuccessfulMyAccountLoginDate"
-          },
-          {
-            "name": "TotalSuccessfulMyAccountLogins",
-            "dataType": "int64",
-            "sourceColumn": "TotalSuccessfulMyAccountLogins"
-          },
-          {
-            "name": "Webchatflag",
-            "dataType": "string",
-            "sourceColumn": "Webchatflag"
-          },
-          {
-            "name": "LastWebchatDate",
-            "dataType": "dateTime",
-            "sourceColumn": "LastWebchatDate"
-          },
-          {
-            "name": "CustomerHardship",
-            "dataType": "string",
-            "sourceColumn": "CustomerHardship"
-          },
-          {
-            "name": "OmbudsmanComplaint",
-            "dataType": "string",
-            "sourceColumn": "OmbudsmanComplaint"
-          },
-          {
-            "name": "StayingConnectedFlag",
-            "dataType": "string",
-            "sourceColumn": "StayingConnectedFlag"
-          },
-          {
-            "name": "Complaints",
-            "dataType": "string",
-            "sourceColumn": "Complaints"
-          },
-          {
-            "name": "BadDebt",
-            "dataType": "string",
-            "sourceColumn": "BadDebt"
-          },
-          {
-            "name": "OutstandingDebt",
-            "dataType": "string",
-            "sourceColumn": "OutstandingDebt"
-          },
-          {
-            "name": "IncompleteMailingAddress",
-            "dataType": "string",
-            "sourceColumn": "IncompleteMailingAddress"
-          },
-          {
-            "name": "DateFrom",
-            "dataType": "dateTime",
-            "sourceColumn": "DateFrom"
-          },
-          {
-            "name": "DateTo",
-            "dataType": "dateTime",
-            "sourceColumn": "DateTo"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
-                "    sp_customer_dimTargetCustomer = Source{[Schema=\"sp_customer\",Item=\"dimTargetCustomer\"]}[Data]",
-                "in",
-                "    sp_customer_dimTargetCustomer"
               ]
             }
           }
@@ -820,16 +439,6 @@
             "name": "State",
             "dataType": "string",
             "sourceColumn": "State"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -1081,16 +690,6 @@
             "name": "CustomerConversion",
             "dataType": "int64",
             "sourceColumn": "CustomerConversion"
-          },
-          {
-            "name": "RowInserted",
-            "dataType": "dateTime",
-            "sourceColumn": "RowInserted"
-          },
-          {
-            "name": "RowUpdated",
-            "dataType": "dateTime",
-            "sourceColumn": "RowUpdated"
           }
         ],
         "partitions": [
@@ -1112,15 +711,404 @@
             }
           }
         ]
+      },
+      {
+        "name": "DimCampaign",
+        "columns": [
+          {
+            "name": "CampaignSK",
+            "dataType": "int64",
+            "sourceColumn": "CampaignSK"
+          },
+          {
+            "name": "CampaignCategory",
+            "dataType": "string",
+            "sourceColumn": "CampaignCategory"
+          },
+          {
+            "name": "CampaignName",
+            "dataType": "string",
+            "sourceColumn": "CampaignName"
+          },
+          {
+            "name": "CampaignLabel",
+            "dataType": "string",
+            "sourceColumn": "CampaignLabel"
+          },
+          {
+            "name": "CampaignDuration",
+            "dataType": "int64",
+            "sourceColumn": "CampaignDuration"
+          },
+          {
+            "name": "CampaignStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CampaignStartDate"
+          },
+          {
+            "name": "CampaignEndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CampaignEndDate"
+          },
+          {
+            "name": "CampaignStrategicObjective",
+            "dataType": "string",
+            "sourceColumn": "CampaignStrategicObjective"
+          },
+          {
+            "name": "CampaignStrategy",
+            "dataType": "string",
+            "sourceColumn": "CampaignStrategy"
+          },
+          {
+            "name": "CampaignTreatment",
+            "dataType": "string",
+            "sourceColumn": "CampaignTreatment"
+          },
+          {
+            "name": "CampaignInitiative",
+            "dataType": "string",
+            "sourceColumn": "CampaignInitiative"
+          },
+          {
+            "name": "CampaignControlGroup",
+            "dataType": "string",
+            "sourceColumn": "CampaignControlGroup"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_commercial_dimCampaign = Source{[Schema=\"sp_commercial\",Item=\"dimCampaign\"]}[Data]",
+                "in",
+                "    sp_commercial_dimCampaign"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "CalculationGroup 1",
+        "calculationGroup": {
+          "calculationItems": [
+            {
+              "name": "CalculationItem 1"
+            }
+          ]
+        },
+        "columns": [
+          {
+            "name": "CalculationItemColumn 1",
+            "dataType": "string",
+            "sourceColumn": "Name"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculationGroup 1",
+            "source": {
+              "type": "calculationGroup"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimTargetCustomer",
+        "columns": [
+          {
+            "name": "CustomerSK",
+            "dataType": "int64",
+            "sourceColumn": "CustomerSK"
+          },
+          {
+            "name": "BPID",
+            "dataType": "string",
+            "sourceColumn": "BPID"
+          },
+          {
+            "name": "CustomerDOB",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerDOB"
+          },
+          {
+            "name": "CustomerAge",
+            "dataType": "int64",
+            "sourceColumn": "CustomerAge"
+          },
+          {
+            "name": "CustomerGender",
+            "dataType": "string",
+            "sourceColumn": "CustomerGender"
+          },
+          {
+            "name": "CustomerSoho",
+            "dataType": "string",
+            "sourceColumn": "CustomerSoho"
+          },
+          {
+            "name": "CustomerSME",
+            "dataType": "string",
+            "sourceColumn": "CustomerSME"
+          },
+          {
+            "name": "CustomerSMER",
+            "dataType": "string",
+            "sourceColumn": "CustomerSMER"
+          },
+          {
+            "name": "CustomerRESI",
+            "dataType": "string",
+            "sourceColumn": "CustomerRESI"
+          },
+          {
+            "name": "CustomerStatus",
+            "dataType": "string",
+            "sourceColumn": "CustomerStatus"
+          },
+          {
+            "name": "CustomerChurnDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerChurnDate"
+          },
+          {
+            "name": "CustomerType",
+            "dataType": "string",
+            "sourceColumn": "CustomerType"
+          },
+          {
+            "name": "ActiveCustomer",
+            "dataType": "string",
+            "sourceColumn": "ActiveCustomer"
+          },
+          {
+            "name": "CNIFlag",
+            "dataType": "string",
+            "sourceColumn": "CNIFlag"
+          },
+          {
+            "name": "CompanyFlag",
+            "dataType": "string",
+            "sourceColumn": "CompanyFlag"
+          },
+          {
+            "name": "AGLRewards",
+            "dataType": "string",
+            "sourceColumn": "AGLRewards"
+          },
+          {
+            "name": "BusinessMultisite",
+            "dataType": "string",
+            "sourceColumn": "BusinessMultisite"
+          },
+          {
+            "name": "CustomerSegment",
+            "dataType": "string",
+            "sourceColumn": "CustomerSegment"
+          },
+          {
+            "name": "CustomerValueState",
+            "dataType": "string",
+            "sourceColumn": "CustomerValueState"
+          },
+          {
+            "name": "CustomerValueNational",
+            "dataType": "string",
+            "sourceColumn": "CustomerValueNational"
+          },
+          {
+            "name": "CustomerChurnPropensity",
+            "dataType": "string",
+            "sourceColumn": "CustomerChurnPropensity"
+          },
+          {
+            "name": "CustomerRiskClass",
+            "dataType": "string",
+            "sourceColumn": "CustomerRiskClass"
+          },
+          {
+            "name": "CustomerRiskScore",
+            "dataType": "int64",
+            "sourceColumn": "CustomerRiskScore"
+          },
+          {
+            "name": "ElectricityContracts",
+            "dataType": "int64",
+            "sourceColumn": "ElectricityContracts"
+          },
+          {
+            "name": "GasContracts",
+            "dataType": "int64",
+            "sourceColumn": "GasContracts"
+          },
+          {
+            "name": "ClassNoOfSites",
+            "dataType": "string",
+            "sourceColumn": "ClassNoOfSites"
+          },
+          {
+            "name": "CustomerStartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "CustomerStartDate"
+          },
+          {
+            "name": "CustomerTenure",
+            "dataType": "int64",
+            "sourceColumn": "CustomerTenure"
+          },
+          {
+            "name": "MyAccountFlag",
+            "dataType": "string",
+            "sourceColumn": "MyAccountFlag"
+          },
+          {
+            "name": "LastSuccessfulMyAccountLoginDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LastSuccessfulMyAccountLoginDate"
+          },
+          {
+            "name": "TotalSuccessfulMyAccountLogins",
+            "dataType": "int64",
+            "sourceColumn": "TotalSuccessfulMyAccountLogins"
+          },
+          {
+            "name": "Webchatflag",
+            "dataType": "string",
+            "sourceColumn": "Webchatflag"
+          },
+          {
+            "name": "LastWebchatDate",
+            "dataType": "dateTime",
+            "sourceColumn": "LastWebchatDate"
+          },
+          {
+            "name": "CustomerHardship",
+            "dataType": "string",
+            "sourceColumn": "CustomerHardship"
+          },
+          {
+            "name": "OmbudsmanComplaint",
+            "dataType": "string",
+            "sourceColumn": "OmbudsmanComplaint"
+          },
+          {
+            "name": "StayingConnectedFlag",
+            "dataType": "string",
+            "sourceColumn": "StayingConnectedFlag"
+          },
+          {
+            "name": "Complaints",
+            "dataType": "string",
+            "sourceColumn": "Complaints"
+          },
+          {
+            "name": "BadDebt",
+            "dataType": "string",
+            "sourceColumn": "BadDebt"
+          },
+          {
+            "name": "OutstandingDebt",
+            "dataType": "string",
+            "sourceColumn": "OutstandingDebt"
+          },
+          {
+            "name": "IncompleteMailingAddress",
+            "dataType": "string",
+            "sourceColumn": "IncompleteMailingAddress"
+          },
+          {
+            "name": "DateFrom",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "DateFrom"
+          },
+          {
+            "name": "DateTo",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "DateTo"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
+                "    sp_customer_dimTargetCustomer = Source{[Schema=\"sp_customer\",Item=\"dimTargetCustomer\"]}[Data],",
+                "    #\"Filtered Rows\" = Table.SelectRows(sp_customer_dimTargetCustomer, each [DateTo] = #date(9999, 12, 31))",
+                "in",
+                "    #\"Filtered Rows\""
+              ]
+            }
+          }
+        ]
       }
     ],
     "relationships": [
       {
-        "name": "cdc22467-9494-4c63-b6c7-28973acd4333",
+        "name": "006b37d3-b4ee-4e0d-8505-bd826b2f6811",
         "fromTable": "FactCustomerMetrics",
-        "fromColumn": "ActualCustMetricFactSK",
+        "fromColumn": "CampaignSK",
         "toTable": "DimCampaign",
-        "toColumn": "CampaignCategory"
+        "toColumn": "CampaignSK"
+      },
+      {
+        "name": "66c6fd58-2242-459c-8996-3bf72bccc3f3",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "PropositionSK",
+        "toTable": "DimProposition",
+        "toColumn": "PropositionSK"
+      },
+      {
+        "name": "8563ab43-aaee-4a09-8dcd-5c2561427f30",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "ChannelSK",
+        "toTable": "DimChannel",
+        "toColumn": "ChannelSK"
+      },
+      {
+        "name": "873106a6-a114-4f9a-b454-2efba199a92f",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "CustJourneySK",
+        "toTable": "DimCustomerJourney",
+        "toColumn": "CustJourneySK"
+      },
+      {
+        "name": "d43b7fdc-e7e9-46c0-99ca-b48e6e245c74",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "TouchPointSK",
+        "toTable": "DimTouchPoint",
+        "toColumn": "TouchPointSK"
+      },
+      {
+        "name": "9739e259-65d3-4fbd-921f-6bebbf67feb8",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "ProductSK",
+        "toTable": "DimProduct",
+        "toColumn": "ProductSK"
+      },
+      {
+        "name": "94856d0e-031d-40a1-9dfe-e74ea7245c0a",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "LocationSK",
+        "toTable": "DimLocation",
+        "toColumn": "LocationSK"
+      },
+      {
+        "name": "24bae5d4-cd47-4c72-bbe9-6f7d96ff2283",
+        "fromTable": "FactCustomerMetrics",
+        "fromColumn": "CustomerSK",
+        "toTable": "DimTargetCustomer",
+        "toColumn": "CustomerSK"
       }
     ],
     "annotations": [
