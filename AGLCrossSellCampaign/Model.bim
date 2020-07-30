@@ -19,7 +19,9 @@
         },
         "credential": {
           "AuthenticationKind": "OAuth2",
-          "Expires": "Wed, 29 Jul 2020 16:22:01 GMT",
+          "kind": "SQL",
+          "path": "edpprdsqldw00.database.windows.net;edpprddb",
+          "Expires": "Thu, 30 Jul 2020 16:07:58 GMT",
           "RefreshToken": "********"
         }
       }
@@ -31,6 +33,7 @@
           {
             "name": "ChannelSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "ChannelSK"
           },
           {
@@ -77,6 +80,7 @@
           {
             "name": "CustJourneySK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CustJourneySK"
           },
           {
@@ -113,6 +117,7 @@
           {
             "name": "ProductSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "ProductSK"
           },
           {
@@ -164,6 +169,7 @@
           {
             "name": "PropositionSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "PropositionSK"
           },
           {
@@ -220,6 +226,7 @@
           {
             "name": "TouchPointSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "TouchPointSK"
           },
           {
@@ -256,6 +263,7 @@
           {
             "name": "LocationSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "LocationSK"
           },
           {
@@ -297,6 +305,7 @@
           {
             "name": "CampaignSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CampaignSK"
           },
           {
@@ -403,6 +412,7 @@
           {
             "name": "DateSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "DateSK"
           },
           {
@@ -569,56 +579,67 @@
           {
             "name": "ActualCustMetricFactSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "ActualCustMetricFactSK"
           },
           {
             "name": "PropositionSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "PropositionSK"
           },
           {
             "name": "CampaignSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CampaignSK"
           },
           {
             "name": "LocationSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "LocationSK"
           },
           {
             "name": "DateSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "DateSK"
           },
           {
             "name": "TimeSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "TimeSK"
           },
           {
             "name": "ChannelSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "ChannelSK"
           },
           {
             "name": "ProductSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "ProductSK"
           },
           {
             "name": "CustJourneySK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CustJourneySK"
           },
           {
             "name": "CustomerSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CustomerSK"
           },
           {
             "name": "TouchPointSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "TouchPointSK"
           },
           {
@@ -835,6 +856,23 @@
             "name": "TargetFuel",
             "dataType": "string",
             "sourceColumn": "TargetFuel"
+          },
+          {
+            "name": "RowInserted",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "RowInserted"
+          },
+          {
+            "name": "RowUpdated",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "RowUpdated"
+          },
+          {
+            "name": "Filter",
+            "dataType": "int64",
+            "sourceColumn": "Filter"
           }
         ],
         "partitions": [
@@ -847,10 +885,11 @@
                 "let",
                 "    Source = #\"SQL/edpprdsqldw00 database windows net;edpprddb\",",
                 "    sp_commercial_FactCustomerMetrics = Source{[Schema=\"sp_commercial\",Item=\"FactCustomerMetrics\"]}[Data],",
-                "    #\"Filtered Rows\" = Table.SelectRows(sp_commercial_FactCustomerMetrics, each [PropositionSK] <> -1 and [CampaignSK] <> -1),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows\",{\"RowInserted\", \"RowUpdated\"})",
+                "    #\"Added Custom\" = Table.AddColumn(sp_commercial_FactCustomerMetrics, \"Filter\", each [PropositionSK]+[CampaignSK]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Filter\", Int64.Type}}),",
+                "    #\"Filtered Rows\" = Table.SelectRows(#\"Changed Type\", each [Filter] <> -2)",
                 "in",
-                "    #\"Removed Columns\""
+                "    #\"Filtered Rows\""
               ]
             }
           }
@@ -878,8 +917,7 @@
           {
             "name": "eDMBounceRate",
             "expression": [
-              " CALCULATE(",
-              "SUM(FactCustomerMetrics[EmailFailCount]),",
+              " CALCULATE(SUM(FactCustomerMetrics[EmailFailCount]),",
               "DimCampaign[CampaignName]=\"agl_XSell_Campaign\",",
               "DimChannel[ChannelName]=\"EMAIL\"",
               ")",
@@ -918,6 +956,7 @@
           {
             "name": "TimeSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "TimeSK"
           },
           {
@@ -1059,6 +1098,7 @@
           {
             "name": "CustomerSK",
             "dataType": "int64",
+            "isHidden": true,
             "sourceColumn": "CustomerSK"
           },
           {
